@@ -1,0 +1,68 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            background-image: url("http://localhost:63342/mandragora/assets/marek.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        h2 {
+            color: white;
+            font-size: 28px;
+            font-weight: 900;
+            text-align: center;
+        }
+
+        .items {
+            display: flex;
+            gap: 5px 5px;
+            background: rgba(80, 80, 80, 0.5);
+            padding: 10px;
+        }
+        .item {
+            width: 170px;
+            height: 170px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            background: blue;
+            color: white;
+            border: 1px solid gray;
+        }
+
+        .mt-3 {
+            margin-top: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="mt-3">Milujeme mandragoru</h2>
+        <h2 class="mt-3">Všechno nejlepší k narozeninám Dančo :-)</h2>
+        <div class="items">
+            <div class="item" onclick="play('ondra.wav')">
+                Pěknej kluk
+            </div>
+            <div class="item" onclick="play('ondra.wav')">
+                Já bych si dal panáka
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function play(name) {
+            var audio = new Audio(`http://localhost:63342/mandragora/sound/${name}`);
+            audio.play();
+        }
+    </script>
+</body>
+</html>
