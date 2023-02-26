@@ -1,9 +1,18 @@
 <html>
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VTX05PYPM1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-VTX05PYPM1');
+    </script>
     <meta charset="UTF-8">
     <style>
         body {
-            background-image: url("http://mandragora.test/assets/marek.jpg");
+            background-image: url("https://milujimandragoru.cz/assets/marek.jpg");
             background-repeat: no-repeat;
             background-size: cover;
         }
@@ -51,7 +60,6 @@
 <body>
     <div class="container">
         <h2 class="mt-3">Milujeme mandragoru</h2>
-        <h2 class="mt-3">Všechno nejlepší k narozeninám Dančo :-)</h2>
         <div class="items">
             <div class="item" onclick="play('1.mp3')">
                 Ty by ses mi hodil
@@ -190,7 +198,7 @@
 
     <script>
         function play(name) {
-            var audio = new Audio(`http://mandragora.test/sound/${name}`);
+            var audio = new Audio(`https://milujimandragoru.cz/sound/${name}`);
             audio.play();
         }
     </script>
