@@ -212,6 +212,7 @@
     </div>
 
     <script>
+        var audio = null;
         let score = Number(localStorage.getItem('score'));
         function increaseScore(scorePoints) {
             score += scorePoints;
@@ -235,6 +236,7 @@
             return 'Zajíček';
         }
 
+
         function redrawScore() {
             const scoreElement = document.getElementById('score');
             scoreElement.innerHTML = 'Skore: ' + score;
@@ -243,9 +245,20 @@
             rankElement.innerHTML = 'Hodnost: ' + getRank();
         }
 
+        function canPlayAudio() {
+            if (audio !== null && !audio.paused) {
+                return false;
+            }
+            return true;
+        }
+
         function play(name) {
-            var audio = new Audio(`https://milujimandragoru.cz/sound/${name}`);
+            if (!canPlayAudio()) {
+                return;
+            }
+            audio = new Audio(`https://milujimandragoru.cz/sound/${name}`);
             audio.play();
+
             if (name === '39.mp3') {
                 increaseScore(10);
             } else {
