@@ -20,13 +20,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
     function getRank() {
         if (score > 10000) {
             return 'Stará ojetá šlapka kterou nikdo nehce';
-        } else if (score > 5000) {
-            return 'Stará ojetá šlápota';
         } else if (score > 2500) {
-            return 'Stará šlapka';
+            return 'Stará ojetá šlápota';
         } else if (score > 2000) {
-            return 'Šlápota';
+            return 'Stará šlapka';
         } else if (score > 1500) {
+            return 'Šlápota';
+        } else if (score > 1000) {
             return 'Šlapka';
         } else if (score > 500) {
             return 'Zajíc';
