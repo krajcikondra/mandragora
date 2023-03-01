@@ -10,6 +10,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
     }
 
+    const randomItem = document.getElementById('random-item');
+    if (randomItem) {
+        randomItem.onclick = function() {
+            const randomNumber = Math.floor(Math.random() * 44);
+            play(`${randomNumber}.mp3`);
+        };
+    }
+
     var audio = null;
     let score = Number(localStorage.getItem('score'));
     function increaseScore(scorePoints) {
@@ -57,6 +65,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
             lockPremiumItems(true);
         } else {
             lockPremiumItems(false);
+        }
+
+        if (score >= 1500) {
+            const randomItem = document.getElementById('random-item');
+            if (randomItem) {
+                randomItem.removeAttribute('class');
+            }
         }
     }
 
