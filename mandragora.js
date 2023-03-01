@@ -3,7 +3,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
     for(var i = 0; i < items.length; i++) {
         var anchor = items[i];
         anchor.onclick = function() {
-            play(this.dataset.name);
+            const isDisabled = Boolean(this.getAttribute('disabled'));
+            if (!isDisabled) {
+                play(this.dataset.name);
+            }
         }
     }
 
@@ -31,6 +34,18 @@ document.addEventListener("DOMContentLoaded", function(event) {
         return 'Zajíček';
     }
 
+    function lockPremiumItems(lock) {
+        const premiumLength = 5;
+        var items = document.getElementsByClassName('item');
+        for (var i = items.length - premiumLength; i < items.length; i++) {
+            if (lock) {
+                items[i].setAttribute('disabled', true);
+            } else {
+                items[i].removeAttribute('disabled');
+            }
+        }
+    }
+
 
     function redrawScore() {
         const scoreElement = document.getElementById('score');
@@ -38,6 +53,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
         const rankElement = document.getElementById('rank');
         rankElement.innerHTML = 'Hodnost: ' + getRank();
+        if (score <= 500) {
+            lockPremiumItems(true);
+        } else {
+            lockPremiumItems(false);
+        }
     }
 
     function canPlayAudio() {
