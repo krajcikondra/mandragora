@@ -73,6 +73,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 randomItem.removeAttribute('class');
             }
         }
+
+        if (score > 1000000) {
+            localStorage.removeItem('score');
+            alert('ty kurvo');
+        }
+
     }
 
     function canPlayAudio() {
