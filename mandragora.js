@@ -13,8 +13,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const randomItem = document.getElementById('random-item');
     if (randomItem) {
         randomItem.onclick = function() {
-            const randomNumber = Math.floor(Math.random() * 44);
-            play(`${randomNumber}.mp3`);
+            play(`${generateRandom()}.mp3`);
+        };
+    }
+
+    const storyItem = document.getElementById('story-item');
+    if (storyItem) {
+        storyItem.onclick = function() {
+            generateStoryAndPlay();
         };
     }
 
@@ -23,6 +29,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
     function increaseScore(scorePoints) {
         score += scorePoints;
         localStorage.setItem('score', score);
+    }
+
+    function generateRandom() {
+        return Math.floor(Math.random() * 44);
     }
 
     function getRank() {
@@ -74,12 +84,50 @@ document.addEventListener("DOMContentLoaded", function(event) {
             }
         }
 
-        if (score > 1000000) {
+        if (score >= 2000) {
+            const randomItem = document.getElementById('story-item');
+            if (randomItem) {
+                randomItem.removeAttribute('class');
+            }
+        }
+
+        if (score > 500000) {
             localStorage.removeItem('score');
-            alert('ty kurvo');
+            alert('ty kurvo. K tomu jsi nemohl přijít poctivě.');
         }
 
     }
+
+    function generateStoryAndPlay() {
+        if (!canPlayAudio()) {
+            return;
+        }
+        const story = [];
+        for (let i = 0; i < 4; i++) {
+            story.push(generateRandom());
+        }
+
+        playStory(story);
+   }
+
+   function playStory(story) {
+       if (story.length === 0) {
+           return;
+       }
+
+       if (!canPlayAudio()) {
+           setTimeout(() => {
+               playStory(story);
+           }, 300);
+           return;
+       }
+
+       audio = new Audio(`https://milujimandragoru.cz/sound/${story.pop()}.mp3`);
+       audio.play();
+       setTimeout(() => {
+           playStory(story);
+       }, 300);
+   }
 
     function canPlayAudio() {
         if (audio !== null && !audio.paused) {
