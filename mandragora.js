@@ -1,4 +1,11 @@
 document.addEventListener("DOMContentLoaded", function(event) {
+    const level1 = 100;
+    const level2 = 250;
+    const level3 = 500;
+    const level4 = 750;
+    const level5 = 1000;
+    const level6 = 1250;
+
     var items = document.getElementsByClassName('item');
     for(var i = 0; i < items.length; i++) {
         var anchor = items[i];
@@ -32,21 +39,21 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
 
     function generateRandom() {
-        return Math.floor(Math.random() * 44);
+        return Math.floor(Math.random() * 45) + 1;
     }
 
     function getRank() {
-        if (score > 10000) {
+        if (score > level6) {
             return 'Stará ojetá šlapka kterou nikdo nehce';
-        } else if (score > 2500) {
+        } else if (score > level5) {
             return 'Stará ojetá šlápota';
-        } else if (score > 2000) {
+        } else if (score > level4) {
             return 'Stará šlapka';
-        } else if (score > 1500) {
+        } else if (score > level3) {
             return 'Šlápota';
-        } else if (score > 1000) {
+        } else if (score > level2) {
             return 'Šlapka';
-        } else if (score > 500) {
+        } else if (score > level1) {
             return 'Zajíc';
         }
         return 'Zajíček';
@@ -71,20 +78,20 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
         const rankElement = document.getElementById('rank');
         rankElement.innerHTML = 'Hodnost: ' + getRank();
-        if (score <= 500) {
+        if (score <= level1) {
             lockPremiumItems(true);
         } else {
             lockPremiumItems(false);
         }
 
-        if (score >= 1500) {
+        if (score >= level3) {
             const randomItem = document.getElementById('random-item');
             if (randomItem) {
                 randomItem.removeAttribute('class');
             }
         }
 
-        if (score >= 2000) {
+        if (score >= level4) {
             const randomItem = document.getElementById('story-item');
             if (randomItem) {
                 randomItem.removeAttribute('class');
@@ -112,6 +119,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
    function playStory(story) {
        if (story.length === 0) {
+           increaseScore(15);
+           redrawScore();
            return;
        }
 
