@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState, AppThunk } from '../../app/store';
 import {fetchCount} from './counterAPI';
 import {mandragoraStorage} from "../../app/model/mandragora-storage";
+import {getRank} from "../../app/model/rank-by-score";
 
 export interface CounterState {
   score: number;
@@ -10,7 +11,7 @@ export interface CounterState {
 
 const initialState: CounterState = {
   score: mandragoraStorage.getScore(),
-  rank: 'Zajíček',
+  rank: getRank(mandragoraStorage.getScore()),
 };
 
 // The function below is called a thunk and allows us to perform async logic. It
@@ -35,6 +36,7 @@ export const counterSlice = createSlice({
     // Use the PayloadAction type to declare the contents of `action.payload`
     incrementByAmount: (state, action: PayloadAction<number>) => {
       state.score += action.payload;
+      state.rank = getRank(state.score);
     },
   },
 });
