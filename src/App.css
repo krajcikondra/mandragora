@@ -83,3 +83,8 @@ h2 {
 .flex-row img {
   width: 100%;
 }
+
+.hero {
+  color: white;
+  font-weight: 900;
+}

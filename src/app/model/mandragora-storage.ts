@@ -44,8 +44,18 @@ const getScore = (): number => {
     return Number(localStorage.getItem('score'));
 };
 
+const getHero = (): string|null => {
+    return localStorage.getItem('hero');
+};
+
+const setHero = (hero: string): void => {
+    return localStorage.setItem('hero', hero);
+};
+
 export const mandragoraStorage = {
     setScore,
     increaseScore,
     getScore,
+    getHero,
+    setHero,
 };
