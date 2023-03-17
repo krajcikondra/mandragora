@@ -1,12 +1,12 @@
-const level1 = 100;
-const level2 = 250;
-const level3 = 500;
-const level4 = 750;
-const level5 = 1000;
+const level1 = 50;
+const level2 = 100;
+const level3 = 200;
+const level4 = 500;
+const level5 = 800;
 const level6 = 1250;
-const level7 = 1500;
-const level8 = 1750;
-const level9 = 2000;
+const level7 = 1750;
+const level8 = 2000;
+const level9 = 2500;
 
 const allLevels = [
     level1,
