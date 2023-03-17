@@ -14,6 +14,11 @@ function canPlayAudio() {
     return true;
 }
 
+const playCelebrate = () => {
+    audio = new Audio('/sound/celebrate.wav');
+    audio.play();
+};
+
 const play = async (name: string): Promise<boolean> => {
     return new Promise((resolve, reject) => {
         if (!canPlayAudio()) {
@@ -87,4 +92,5 @@ export const audioPlayer = {
     play,
     generateStoryAndPlay,
     playRandom,
+    playCelebrate,
 };

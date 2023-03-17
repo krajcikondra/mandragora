@@ -3,6 +3,7 @@ import { RootState, AppThunk } from '../../app/store';
 import {fetchCount} from './counterAPI';
 import {mandragoraStorage} from "../../app/model/mandragora-storage";
 import {getRank} from "../../app/model/rank-by-score";
+import {audioPlayer} from "../../app/model/audio-player";
 
 export interface CounterState {
   score: number;
@@ -35,8 +36,12 @@ export const counterSlice = createSlice({
   reducers: {
     // Use the PayloadAction type to declare the contents of `action.payload`
     incrementByAmount: (state, action: PayloadAction<number>) => {
-      state.score += action.payload;
-      state.rank = getRank(state.score);
+        state.score += action.payload;
+        const newRank = getRank(state.score);
+        if (newRank != state.rank) {
+            audioPlayer.playCelebrate();
+        }
+        state.rank = newRank;
     },
   },
 });

@@ -4,6 +4,9 @@ const level3 = 500;
 const level4 = 750;
 const level5 = 1000;
 const level6 = 1250;
+const level7 = 1500;
+const level8 = 1750;
+const level9 = 2000;
 
 const allLevels = [
     level1,
@@ -12,10 +15,12 @@ const allLevels = [
     level4,
     level5,
     level6,
+    level7,
+    level8,
 ];
 
 const getPrevLevelScore = (score: number): number => {
-    const smallerLevels = allLevels.filter(l => l < score);
+    const smallerLevels = allLevels.filter(l => l <= score);
     if (smallerLevels.length === 0) {
         return  0;
     }
@@ -48,5 +53,8 @@ export const levels = {
     level4,
     level5,
     level6,
+    level7,
+    level8,
+    level9,
     getPercentOfNextLevel,
 };
