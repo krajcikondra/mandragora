@@ -12,11 +12,9 @@ type Props = OuterProps;
 
 function score({score, rank}: Props) {
     return <div>
+        <ProgressBar now={levels.getPercentOfNextLevel(score)} />
         <div id="score">Skore: {score}</div>
         <div id="rank">Hodnost: {rank}</div>
-        <div>
-            <ProgressBar now={levels.getPercentOfNextLevel(score)} />
-        </div>
     </div>;
 }
 

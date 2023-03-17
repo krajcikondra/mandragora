@@ -52,16 +52,15 @@ h2 {
 }
 
 #score, #rank {
-  position: absolute;
-  right: 2rem;
-  top: 1rem;
+  padding-top: 10px;
+  text-align: right;
   color: white;
   font-weight: 900;
   font-size: 16px;
 }
 
 #rank {
-  top: 2.5rem;
+  padding-top: 3px;
 }
 
 .item.disabled {
