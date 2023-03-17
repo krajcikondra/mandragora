@@ -1,9 +1,7 @@
 import React from 'react';
 import {compose} from "redux";
 import {Item} from "./item";
-import {audioPlayer} from "../model/audio-player";
 import {levels} from "../model/levels";
-import {Row} from "react-bootstrap";
 
 type OuterProps = {
     score: number,
@@ -78,12 +76,12 @@ function items() {
     ];
 
     return (
-        <Row className="items">
+        <div className="items">
             {itemsData.map((item, key) => <Item
                 activity={item}
                 key={key}
             />)}
-        </Row>
+        </div>
     );
 }
 

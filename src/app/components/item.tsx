@@ -2,7 +2,6 @@ import React from 'react';
 import {compose} from "redux";
 import classNames from 'classnames';
 import {connect} from "react-redux";
-import {Col} from "react-bootstrap";
 
 import {RootState} from "../store";
 import {incrementByAmount} from "../../features/counter/counterSlice";
@@ -43,11 +42,7 @@ function item({activity, increase, score}: Props) {
     };
 
     return (
-        <Col
-            xs={6}
-            sm={4}
-            md={3}
-            xl={2}
+        <div
             className={classNames('item', disabled && 'disabled')}
             data-name={audioName}
             onClick={click}
@@ -56,7 +51,7 @@ function item({activity, increase, score}: Props) {
                 <div>{title}</div>
                 {disabled && unlockFrom && <div className="subtitle">{unlockFrom}+</div>}
             </div>
-        </Col>
+        </div>
     );
 }
 
