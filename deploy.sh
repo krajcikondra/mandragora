@@ -1,1 +1,2 @@
-scp -r ./* digidoo-weby:/home/milujimandragoru.cz/uploads
+npm run build
+scp -r ./build/* digidoo-weby:/home/milujimandragoru.cz/uploads

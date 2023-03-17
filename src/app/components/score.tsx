@@ -15,7 +15,7 @@ function score({score, rank}: Props) {
         <div id="score">Skore: {score}</div>
         <div id="rank">Hodnost: {rank}</div>
         <div>
-            <ProgressBar now={levels.getPercentOfNextLevel(score)} />;
+            <ProgressBar now={levels.getPercentOfNextLevel(score)} />
         </div>
     </div>;
 }
