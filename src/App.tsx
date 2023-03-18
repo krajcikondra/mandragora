@@ -3,9 +3,10 @@ import {useAppSelector} from "./app/hooks";
 import {selectHero, selectRank, selectScore} from "./features/counter/counterSlice";
 import {Score} from './app/components/score';
 import {Items} from './app/components/items';
+import {heroes, Heroes} from "./app/components/heroes";
+import {levels} from "./app/model/levels";
 
 import './App.css';
-import {heroes, Heroes} from "./app/components/heroes";
 
 function App() {
   const score = useAppSelector(selectScore);
@@ -13,15 +14,28 @@ function App() {
   const heroName = useAppSelector(selectHero);
   const hero = heroName ? heroes.find(h => h.name === heroName) : null;
 
+  const getBg = (): number => {
+      if (score >= levels.level6) {
+          return 3;
+      } else if (score >= levels.level5) {
+          return 2
+      } else if (score >= levels.level4) {
+          return 1;
+      }
+      return 0;
+  };
+
   return (
-      <div className="container">
-        <Score
-            score={score}
-            rank={rank}
-            hero={hero ?? null}
-        />
-        <h2 className="mt-3">Milujeme mandragoru</h2>
-          {hero ? <Items heroName={heroName} score={score} /> : <Heroes score={score} />}
+      <div id="bodyWrapper" className={`bodyWrapper-${getBg()}`}>
+          <div className="container">
+              <Score
+                  score={score}
+                  rank={rank}
+                  hero={hero ?? null}
+              />
+              <h2 className="mt-3">Milujeme mandragoru</h2>
+              {hero ? <Items heroName={heroName} score={score} /> : <Heroes score={score} />}
+          </div>
       </div>
   );
 }

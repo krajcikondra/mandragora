@@ -1,7 +1,26 @@
-body {
-  background-image: url("https://milujimandragoru.cz/assets/marek.jpg");
+html, body, #bodyWrapper, #root {
+  height: 100%;
+}
+
+#bodyWrapper {
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.bodyWrapper-0 {
+  background-image: url("https://milujimandragoru.cz/assets/bg0.jpg");
+}
+
+.bodyWrapper-1 {
+  background-image: url("https://milujimandragoru.cz/assets/bg1.jpg");
+}
+
+.bodyWrapper-2 {
+  background-image: url("https://milujimandragoru.cz/assets/bg2.jpg");
+}
+
+.bodyWrapper-3 {
+  background-image: url("https://milujimandragoru.cz/assets/bg3.jpg");
 }
 
 .container {
