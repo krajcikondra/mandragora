@@ -1,6 +1,6 @@
 import React from 'react';
 import {useAppSelector} from "./app/hooks";
-import {selectHero, selectMoney, selectRank, selectScore} from "./features/counter/counterSlice";
+import {selectHealth, selectHero, selectMoney, selectRank, selectScore} from "./features/counter/counterSlice";
 import {Score} from './app/components/score';
 import {Items} from './app/components/items';
 import {heroes, Heroes} from "./app/components/heroes";
@@ -13,6 +13,7 @@ function App() {
   const rank = useAppSelector(selectRank);
   const heroName = useAppSelector(selectHero);
   const money = useAppSelector(selectMoney);
+  const health = useAppSelector(selectHealth);
   const hero = heroName ? heroes.find(h => h.name === heroName) : null;
 
   const getBg = (): number => {
@@ -34,6 +35,7 @@ function App() {
                   rank={rank}
                   hero={hero ?? null}
                   money={money}
+                  health={health}
               />
               <h2 className="mt-3">Milujeme mandragoru</h2>
               {hero ? <Items heroName={heroName} score={score} /> : <Heroes score={score} />}

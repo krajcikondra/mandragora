@@ -20,6 +20,7 @@ type NormalActivity = {
     unlockFrom?: number,
     availableForHero?: HeroName,
     earning?: number,
+    healthRisk?: true,
 };
 
 type ExtraActivity = {
@@ -30,6 +31,7 @@ type ExtraActivity = {
     unlockFrom?: number,
     availableForHero?: undefined,
     earning?: undefined,
+    healthRisk?: undefined,
 };
 
 function items({heroName} :Props) {
@@ -66,7 +68,7 @@ function items({heroName} :Props) {
         {type: 'normal', audioName: "31.mp3", title: "Postavte si čuráky", points: 5, unlockFrom:  levels.level3},
         {type: 'normal', audioName: "32.mp3", title: "Musíme ještě dneska to poslat do Německa", points: 5, unlockFrom:  levels.level3},
         {type: 'normal', audioName: "33.mp3", title: "Doufam, že mi to do pusy stříkat nebude", points: 5, unlockFrom:  levels.level3},
-        {type: 'normal', audioName: "34.mp3", title: "Kuř ho pěkně hluboko", points: 5, unlockFrom:  levels.level3},
+        {type: 'normal', audioName: "34.mp3", title: "Kuř ho pěkně hluboko", points: 15, unlockFrom:  levels.level3, healthRisk: true},
         {type: 'normal', audioName: "35.mp3", title: "To je vono", points: 5, unlockFrom:  levels.level3},
         {type: 'normal', audioName: "36.mp3", title: "Teď natočíme ten výstřik", points: 5, unlockFrom:  levels.level3},
         {type: 'normal', audioName: "37.mp3", title: "Jestli si ho nepostavíš", points: 5, unlockFrom:  levels.level3},
@@ -74,7 +76,7 @@ function items({heroName} :Props) {
         {type: 'normal', audioName: "39.mp3", title: "Honit", points: 10, unlockFrom:  levels.level3, availableForHero: 'Krysa'},
         {type: 'normal', audioName: "40.mp3", title: "Ty starýho filmaře nebudeš učit", points: 5, unlockFrom:  levels.level3},
         {type: 'normal', audioName: "41.mp3", title: "Budeme točit tu šukačku", points: 5, unlockFrom:  levels.level4},
-        {type: 'normal', audioName: "42.mp3", title: "Otoč se a budeme točit tu šukačku", points: 5, unlockFrom:  levels.level4},
+        {type: 'normal', audioName: "42.mp3", title: "Otoč se a budeme točit tu šukačku", points: 17, unlockFrom:  levels.level4, healthRisk: true},
         {type: 'normal', audioName: "43.mp3", title: "Nebo ty Jonáši", points: 5, unlockFrom:  levels.level4, availableForHero: 'Marek'},
         {type: 'normal', audioName: "44.mp3", title: "Ty vaše svěrače budeme muset otevřít", points: 5, unlockFrom:  levels.level4},
         {type: 'extra', audioName: "random", title: "RANDOM", points: 5, unlockFrom:  levels.level5},

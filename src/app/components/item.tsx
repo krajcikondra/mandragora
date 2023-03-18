@@ -3,10 +3,10 @@ import {compose} from "redux";
 import classNames from 'classnames';
 import {connect} from "react-redux";
 
-import {RootState} from "../store";
-import {incrementByAmount, incrementMoneyByAmount} from "../../features/counter/counterSlice";
-import {mandragora} from "../model/mandragora";
-import {Activity} from "./items";
+import {RootState} from '../store';
+import {decreaseHealth, incrementByAmount, incrementMoneyByAmount} from '../../features/counter/counterSlice';
+import {mandragora} from '../model/mandragora';
+import {Activity} from './items';
 
 type OuterProps = {
     activity: Activity,
@@ -19,12 +19,13 @@ type StateProps = {
 type DispatchProps = {
     increaseScore(amount: number): void,
     increaseMoney(amount: number): void,
+    decreaseHealth(amount: number): void,
 };
 
 type Props = OuterProps & StateProps & DispatchProps;
 
-function item({activity, increaseScore, increaseMoney, score}: Props) {
-    const {unlockFrom, audioName, title, type, earning, points} = activity;
+function item({activity, increaseScore, increaseMoney, score, decreaseHealth}: Props) {
+    const {unlockFrom, audioName, title, type, earning, points, healthRisk} = activity;
     const disabled = unlockFrom && unlockFrom > score;
     const click = () => {
         if (disabled) {
@@ -32,7 +33,7 @@ function item({activity, increaseScore, increaseMoney, score}: Props) {
         }
 
         if (type === 'normal') {
-            mandragora.play(activity, increaseScore, increaseMoney);
+            mandragora.play(activity, increaseScore, increaseMoney, decreaseHealth);
         }
 
         if (audioName === 'random') {
@@ -44,7 +45,7 @@ function item({activity, increaseScore, increaseMoney, score}: Props) {
 
     return (
         <div
-            className={classNames('item', disabled && 'disabled')}
+            className={classNames('item', disabled && 'disabled', healthRisk && 'item--healthRisk')}
             data-name={audioName}
             onClick={click}
         >
@@ -65,6 +66,7 @@ const mapStateToProps = (state: RootState): StateProps => ({
 const mapDispatchToProps = (dispatch: any): DispatchProps => ({
     increaseScore: (amount: number) => dispatch(incrementByAmount(amount)),
     increaseMoney: (amount: number) => dispatch(incrementMoneyByAmount(amount)),
+    decreaseHealth: (amount: number) => dispatch(decreaseHealth(amount)),
 });
 
 const enhance = compose<React.ComponentClass<OuterProps>>(

@@ -10,6 +10,7 @@ export interface CounterState {
   money: number;
   rank: string;
   hero: string|null;
+  health: number;
 }
 
 const initialState: CounterState = {
@@ -17,6 +18,7 @@ const initialState: CounterState = {
   rank: getRank(mandragoraStorage.getScore()),
   hero: mandragoraStorage.getHero(),
   money: mandragoraStorage.getMoney(),
+  health: mandragoraStorage.getHealth(),
 };
 
 // The function below is called a thunk and allows us to perform async logic. It
@@ -50,6 +52,12 @@ export const counterSlice = createSlice({
     incrementMoneyByAmount: (state, action: PayloadAction<number>) => {
         state.money += action.payload;
     },
+    decreaseHealth: (state, action: PayloadAction<number>) => {
+        state.health -= action.payload;
+    },
+    increaseHealth: (state, action: PayloadAction<number>) => {
+        state.health += action.payload;
+    },
     setHero: (state, action: PayloadAction<string|null>) => {
         state.hero = action.payload;
         mandragoraStorage.setHero(action.payload);
@@ -57,7 +65,13 @@ export const counterSlice = createSlice({
   },
 });
 
-export const { incrementByAmount, incrementMoneyByAmount, setHero} = counterSlice.actions;
+export const {
+    incrementByAmount,
+    incrementMoneyByAmount,
+    setHero,
+    decreaseHealth,
+    increaseHealth,
+} = counterSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
@@ -66,6 +80,7 @@ export const selectScore = (state: RootState) => state.counter.score;
 export const selectMoney = (state: RootState) => state.counter.money;
 export const selectRank = (state: RootState) => state.counter.rank;
 export const selectHero = (state: RootState) => state.counter.hero;
+export const selectHealth = (state: RootState) => state.counter.health;
 
 // We can also write thunks by hand, which may contain both sync and async logic.
 // Here's an example of conditionally dispatching actions based on current state.

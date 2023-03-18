@@ -12,11 +12,12 @@ type OuterProps = {
     rank: string,
     hero: Hero|null,
     money: number|null,
+    health: number,
 };
 
 type Props = OuterProps;
 
-function MyScore({score, rank, hero, money}: Props) {
+function MyScore({score, rank, hero, money, health}: Props) {
     const dispatch = useDispatch();
 
     const resetHero = () => {
@@ -26,11 +27,12 @@ function MyScore({score, rank, hero, money}: Props) {
     return <div>
         <ProgressBar now={levels.getPercentOfNextLevel(score)} />
         <div id="score">
-            {hero && <img onClick={resetHero} width={40} height={40} src={hero?.imgSrc} alt="" />}
+            <span> Peníze: {money} Kč</span>
+            <span> &nbsp;&nbsp;&nbsp;Zdraví: {health}% &nbsp;&nbsp;&nbsp;</span>
             <span className="px-2">Skore: {score}</span>
-            <div>Peníze: {money} Kč</div>
+            <span id="rank">&nbsp;&nbsp;&nbsp;Hodnost: {rank}&nbsp;&nbsp;</span>
+            {hero && <img onClick={resetHero} width={40} height={40} src={hero?.imgSrc} alt="" />}
         </div>
-        <div id="rank">Hodnost: {rank}</div>
     </div>;
 }
 

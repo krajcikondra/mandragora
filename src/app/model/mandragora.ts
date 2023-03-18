@@ -11,11 +11,23 @@ const increase = (points: number, increaseFc: any, earning?: number, increaseMon
     }
 };
 
-const play = (activity: Activity, increaseFc: any, increaseMoneyFc: any): void => {
+const play = (
+    activity: Activity,
+    increaseFc: any,
+    increaseMoneyFc: any,
+    decreaseHealth: any
+): void => {
     audioPlayer.play(activity.audioName).then(() => {
         increase(activity.points, increaseFc, activity.earning, increaseMoneyFc);
+        if (amIInfected()) {
+            mandragoraStorage.decreaseHealth(3);
+            decreaseHealth(3);
+        }
     });
 };
+
+const generateRandom = (min: number, max: number): number => Math.floor(Math.random() * (max - min + 1) + min);
+const amIInfected = (): boolean => generateRandom(1, 5) === 5;
 
 const playStory = (points: number, increaseFc: any) => {
     audioPlayer.generateStoryAndPlay().then(() => {
