@@ -19,7 +19,7 @@ const play = (
 ): void => {
     audioPlayer.play(activity.audioName).then(() => {
         increase(activity.points, increaseFc, activity.earning, increaseMoneyFc);
-        if (amIInfected()) {
+        if (activity.healthRisk && amIInfected()) {
             mandragoraStorage.decreaseHealth(3);
             decreaseHealth(3);
         }
