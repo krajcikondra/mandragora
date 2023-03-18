@@ -88,3 +88,9 @@ h2 {
   color: white;
   font-weight: 900;
 }
+
+.hero--disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}

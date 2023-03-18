@@ -21,7 +21,7 @@ function App() {
             hero={hero ?? null}
         />
         <h2 className="mt-3">Milujeme mandragoru</h2>
-          {hero ? <Items heroName={heroName} score={score} /> : <Heroes />}
+          {hero ? <Items heroName={heroName} score={score} /> : <Heroes score={score} />}
       </div>
   );
 }
