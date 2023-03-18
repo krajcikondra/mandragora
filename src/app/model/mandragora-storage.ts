@@ -3,6 +3,7 @@ var CryptoJS = require("crypto-js");
 const verifyScoreSecret = 'dfsafosa7s8dfasvadssa';
 const cryptoKey = 'mandragoraKey';
 const moneyKey = 'dfsaf89sd89fhsafd89';
+const scoreKey = 'd8fjdf888d888ffdsa';
 const healthKey = '8fhfhsd988f88';
 
 const setValueEncrypted = (name: string, value: number): void => {
@@ -36,7 +37,7 @@ const getSecret = (): number|null => {
 };
 
 const setScore = (score: number): void => {
-    localStorage.setItem('score', String(score));
+    setValueEncrypted(scoreKey, score);
     setSecret(score);
 };
 
@@ -66,7 +67,7 @@ const verifyScore = (): boolean => {
 
 const increaseScore = (increase: number): void => {
     if (!verifyScore()) {
-        localStorage.removeItem('score');
+        localStorage.removeItem(scoreKey);
         localStorage.removeItem(verifyScoreSecret);
         window.location.reload();
         return;
@@ -79,7 +80,7 @@ const increaseMoney = (increase: number): void => {
 };
 
 const getScore = (): number => {
-    return Number(localStorage.getItem('score'));
+    return Number(getValueEncrypted(scoreKey));
 };
 
 const getMoney = (): number => {
@@ -108,7 +109,7 @@ const setHero = (hero: string|null): void => {
 
 const reset = () => {
     localStorage.removeItem('hero');
-    localStorage.removeItem('score');
+    localStorage.removeItem(scoreKey);
     localStorage.removeItem(moneyKey);
     localStorage.removeItem(healthKey);
     localStorage.removeItem(verifyScoreSecret);
