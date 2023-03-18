@@ -22,6 +22,10 @@ const setScore = (score: number): void => {
     setSecret(score);
 };
 
+const setMoney = (money: number): void => {
+    localStorage.setItem('money', String(money));
+};
+
 const verifyScore = (): boolean => {
     const secretScore = getSecret();
     if (!secretScore) {
@@ -40,8 +44,16 @@ const increaseScore = (increase: number): void => {
     setScore(getScore() + increase);
 };
 
+const increaseMoney = (increase: number): void => {
+    setMoney(getMoney() + increase);
+};
+
 const getScore = (): number => {
     return Number(localStorage.getItem('score'));
+};
+
+const getMoney = (): number => {
+    return Number(localStorage.getItem('money'));
 };
 
 const getHero = (): string|null => {
@@ -60,6 +72,8 @@ export const mandragoraStorage = {
     setScore,
     increaseScore,
     getScore,
+    increaseMoney,
     getHero,
     setHero,
+    getMoney,
 };

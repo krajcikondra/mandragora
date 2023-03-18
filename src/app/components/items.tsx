@@ -19,6 +19,7 @@ type NormalActivity = {
     points: number,
     unlockFrom?: number,
     availableForHero?: HeroName,
+    earning?: number,
 };
 
 type ExtraActivity = {
@@ -28,6 +29,7 @@ type ExtraActivity = {
     points: number,
     unlockFrom?: number,
     availableForHero?: undefined,
+    earning?: undefined,
 };
 
 function items({heroName} :Props) {
@@ -43,7 +45,7 @@ function items({heroName} :Props) {
         {type: 'normal', audioName: "9.mp3", title: "Ja bych si dal panáka", points: 5},
         {type: 'normal', audioName: "10.mp3", title: "Dobrou noc", points: 5, availableForHero: 'Franta'},
         {type: 'normal', audioName: "11.mp3", title: "Nechtěj mě nasrat", points: 5, unlockFrom:  levels.level1},
-        {type: 'normal', audioName: "12.mp3", title: "Já už budu", points: 5, unlockFrom:  levels.level1, availableForHero: 'Franta'},
+        {type: 'normal', audioName: "12.mp3", title: "Já už budu", points: 5, unlockFrom:  levels.level1, earning: 500},
         {type: 'normal', audioName: "13.mp3", title: "Všechno se naučíš", points: 5, unlockFrom:  levels.level1, availableForHero: 'David'},
         {type: 'normal', audioName: "14.mp3", title: "Umej si ten ksicht", points: 5, unlockFrom:  levels.level1, availableForHero: 'Honza'},
         {type: 'normal', audioName: "15.mp3", title: "Půjčíš nám ty kluky", points: 5, unlockFrom:  levels.level1},

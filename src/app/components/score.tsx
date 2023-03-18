@@ -11,11 +11,12 @@ type OuterProps = {
     score: number,
     rank: string,
     hero: Hero|null,
+    money: number|null,
 };
 
 type Props = OuterProps;
 
-function MyScore({score, rank, hero}: Props) {
+function MyScore({score, rank, hero, money}: Props) {
     const dispatch = useDispatch();
 
     const resetHero = () => {
@@ -27,6 +28,7 @@ function MyScore({score, rank, hero}: Props) {
         <div id="score">
             {hero && <img onClick={resetHero} width={40} height={40} src={hero?.imgSrc} alt="" />}
             <span className="px-2">Skore: {score}</span>
+            <div>Peníze: {money} Kč</div>
         </div>
         <div id="rank">Hodnost: {rank}</div>
     </div>;
