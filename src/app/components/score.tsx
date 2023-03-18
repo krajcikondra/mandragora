@@ -15,7 +15,7 @@ type OuterProps = {
 
 type Props = OuterProps;
 
-function score({score, rank, hero}: Props) {
+function MyScore({score, rank, hero}: Props) {
     const dispatch = useDispatch();
 
     const resetHero = () => {
@@ -35,4 +35,4 @@ function score({score, rank, hero}: Props) {
 const enhance = compose<React.ComponentClass<OuterProps>>(
 );
 
-export const Score = enhance(score);
+export const Score = enhance(MyScore);
