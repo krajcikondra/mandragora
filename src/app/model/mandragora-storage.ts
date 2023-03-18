@@ -106,6 +106,14 @@ const setHero = (hero: string|null): void => {
     }
 };
 
+const reset = () => {
+    localStorage.removeItem('hero');
+    localStorage.removeItem('score');
+    localStorage.removeItem(moneyKey);
+    localStorage.removeItem(healthKey);
+    localStorage.removeItem(verifyScoreSecret);
+};
+
 export const mandragoraStorage = {
     setScore,
     increaseScore,
@@ -117,4 +125,5 @@ export const mandragoraStorage = {
     getHealth,
     increaseHealth,
     decreaseHealth,
+    reset,
 };

@@ -54,6 +54,11 @@ export const counterSlice = createSlice({
     },
     decreaseHealth: (state, action: PayloadAction<number>) => {
         state.health -= action.payload;
+        if (state.health <= 0) {
+            alert('Nechal ses prcat, až jsi z toho chcípl. Zkus to znovu.');
+            mandragoraStorage.reset();
+            window.location.reload();
+        }
     },
     increaseHealth: (state, action: PayloadAction<number>) => {
         state.health += action.payload;
