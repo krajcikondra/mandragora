@@ -1,8 +1,11 @@
 import React from 'react';
 import {compose} from "redux";
 import {ProgressBar} from "react-bootstrap";
+import {useDispatch} from "react-redux";
+
 import {levels} from "../model/levels";
 import {Hero} from "./heroes";
+import {setHero} from "../../features/counter/counterSlice";
 
 type OuterProps = {
     score: number,
@@ -13,10 +16,16 @@ type OuterProps = {
 type Props = OuterProps;
 
 function score({score, rank, hero}: Props) {
+    const dispatch = useDispatch();
+
+    const resetHero = () => {
+        dispatch(setHero(null));
+    };
+
     return <div>
         <ProgressBar now={levels.getPercentOfNextLevel(score)} />
         <div id="score">
-            {hero && <img width={40} height={40} src={hero?.imgSrc} alt="" />}
+            {hero && <img onClick={resetHero} width={40} height={40} src={hero?.imgSrc} alt="" />}
             <span className="px-2">Skore: {score}</span>
         </div>
         <div id="rank">Hodnost: {rank}</div>

@@ -48,8 +48,12 @@ const getHero = (): string|null => {
     return localStorage.getItem('hero');
 };
 
-const setHero = (hero: string): void => {
-    return localStorage.setItem('hero', hero);
+const setHero = (hero: string|null): void => {
+    if (hero) {
+        localStorage.setItem('hero', hero);
+    } else {
+        localStorage.removeItem('hero');
+    }
 };
 
 export const mandragoraStorage = {

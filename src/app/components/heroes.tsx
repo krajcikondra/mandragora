@@ -13,6 +13,8 @@ export type Hero = {
     name: string,
 };
 
+export type HeroName = string;
+
 export const heroes: Hero[] = [
     {imgSrc: '/hero/krysa.png', name: 'Krysa'},
     {imgSrc: '/hero/franta.png', name: 'Franta'},
@@ -20,6 +22,8 @@ export const heroes: Hero[] = [
     {imgSrc: '/hero/sasa.png', name: 'Saša'},
     {imgSrc: '/hero/honza.png', name: 'Honza'},
     {imgSrc: '/hero/marek.png', name: 'Marek'},
+    {imgSrc: '/hero/zuzka.png', name: 'Zuzka'},
+    {imgSrc: '/hero/american.png', name: 'Rudi'},
 ];
 
 export const Heroes = () => {

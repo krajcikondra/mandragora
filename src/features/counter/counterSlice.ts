@@ -45,7 +45,7 @@ export const counterSlice = createSlice({
         }
         state.rank = newRank;
     },
-    setHero: (state, action: PayloadAction<string>) => {
+    setHero: (state, action: PayloadAction<string|null>) => {
         state.hero = action.payload;
         mandragoraStorage.setHero(action.payload);
     },
