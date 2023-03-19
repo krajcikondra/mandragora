@@ -1,3 +1,5 @@
+import {itemsData} from "../components/items";
+
 var audio: any|null = null;
 export const level1 = 100;
 export const level2 = 250;
@@ -5,7 +7,7 @@ export const level3 = 500;
 export const level4 = 750;
 export const level5 = 1000;
 export const level6 = 1250;
-const highestAudioNumber = 44;
+const highestAudioNumber = itemsData.length;
 
 function canPlayAudio() {
     if (audio !== null && !audio.paused) {
