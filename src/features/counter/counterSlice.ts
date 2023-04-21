@@ -11,6 +11,7 @@ export interface CounterState {
   rank: string;
   hero: string|null;
   health: number;
+  storeActive: boolean;
 }
 
 const initialState: CounterState = {
@@ -19,6 +20,7 @@ const initialState: CounterState = {
   hero: mandragoraStorage.getHero(),
   money: mandragoraStorage.getMoney(),
   health: mandragoraStorage.getHealth(),
+  storeActive: false,
 };
 
 // The function below is called a thunk and allows us to perform async logic. It
@@ -52,6 +54,12 @@ export const counterSlice = createSlice({
     incrementMoneyByAmount: (state, action: PayloadAction<number>) => {
         state.money += action.payload;
     },
+    decreaseMoneyByAmount: (state, action: PayloadAction<number>) => {
+        state.money -= action.payload;
+    },
+    openStore: (state, action: PayloadAction<boolean>) => {
+        state.storeActive = action.payload;
+    },
     decreaseHealth: (state, action: PayloadAction<number>) => {
         state.health -= action.payload;
         if (state.health <= 0) {
@@ -61,7 +69,7 @@ export const counterSlice = createSlice({
         }
     },
     increaseHealth: (state, action: PayloadAction<number>) => {
-        state.health += action.payload;
+        state.health = Math.min(state.health + action.payload, 100);
     },
     setHero: (state, action: PayloadAction<string|null>) => {
         state.hero = action.payload;
@@ -73,9 +81,11 @@ export const counterSlice = createSlice({
 export const {
     incrementByAmount,
     incrementMoneyByAmount,
+    decreaseMoneyByAmount,
     setHero,
     decreaseHealth,
     increaseHealth,
+    openStore,
 } = counterSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
@@ -86,6 +96,7 @@ export const selectMoney = (state: RootState) => state.counter.money;
 export const selectRank = (state: RootState) => state.counter.rank;
 export const selectHero = (state: RootState) => state.counter.hero;
 export const selectHealth = (state: RootState) => state.counter.health;
+export const selectOpenStore = (state: RootState) => state.counter.storeActive;
 
 // We can also write thunks by hand, which may contain both sync and async logic.
 // Here's an example of conditionally dispatching actions based on current state.
