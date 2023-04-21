@@ -5,7 +5,8 @@ import {useDispatch} from "react-redux";
 
 import {levels} from "../model/levels";
 import {Hero} from "./heroes";
-import {openStore, setHero} from "../../features/counter/counterSlice";
+import {openStore, selectOpenStore, setHero} from "../../features/counter/counterSlice";
+import {useAppSelector} from "../hooks";
 
 type OuterProps = {
     score: number,
@@ -19,13 +20,15 @@ type Props = OuterProps;
 
 function MyScore({score, rank, hero, money, health}: Props) {
     const dispatch = useDispatch();
+    const isStoreOpen = useAppSelector(selectOpenStore);
 
     const resetHero = () => {
         dispatch(setHero(null));
+        dispatch(openStore(false));
     };
 
     const goToStore = () => {
-        dispatch(openStore(true));
+        dispatch(openStore(!isStoreOpen));
     };
 
     return <div>
