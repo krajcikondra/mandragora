@@ -62,6 +62,7 @@ export const counterSlice = createSlice({
     },
     decreaseHealth: (state, action: PayloadAction<number>) => {
         state.health -= action.payload;
+        mandragoraStorage.setHealth(state.health);
         if (state.health <= 0) {
             alert('Nechal ses prcat, až jsi z toho chcípl. Zkus to znovu.');
             mandragoraStorage.reset();
@@ -70,6 +71,7 @@ export const counterSlice = createSlice({
     },
     increaseHealth: (state, action: PayloadAction<number>) => {
         state.health = Math.min(state.health + action.payload, 100);
+        mandragoraStorage.setHealth(state.health);
     },
     setHero: (state, action: PayloadAction<string|null>) => {
         state.hero = action.payload;

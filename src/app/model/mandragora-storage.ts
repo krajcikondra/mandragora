@@ -127,4 +127,5 @@ export const mandragoraStorage = {
     increaseHealth,
     decreaseHealth,
     reset,
+    setHealth,
 };
