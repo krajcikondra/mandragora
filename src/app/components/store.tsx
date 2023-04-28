@@ -5,6 +5,7 @@ import {useDispatch} from "react-redux";
 import {decreaseMoneyByAmount, increaseHealth, openStore, selectMoney} from "../../features/counter/counterSlice";
 import {useAppSelector} from "../hooks";
 import {audioPlayer} from "../model/audio-player";
+import {mandragoraStorage} from "../model/mandragora-storage";
 
 type OuterProps = {
 };
@@ -34,6 +35,7 @@ function MyStore(_: Props) {
             dispatch(increaseHealth(10));
             dispatch(decreaseMoneyByAmount(item.price));
             audioPlayer.playSniff();
+            mandragoraStorage.decreaseMoney(item.price);
         }
     };
     const items: StoreItem[] = [

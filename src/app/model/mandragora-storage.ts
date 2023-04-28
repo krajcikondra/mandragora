@@ -79,6 +79,10 @@ const increaseMoney = (increase: number): void => {
     setMoney(getMoney() + increase);
 };
 
+const decreaseMoney = (increase: number): void => {
+    setMoney(getMoney() - increase);
+};
+
 const getScore = (): number => {
     return Number(getValueEncrypted(scoreKey));
 };
@@ -120,6 +124,7 @@ export const mandragoraStorage = {
     increaseScore,
     getScore,
     increaseMoney,
+    decreaseMoney,
     getHero,
     setHero,
     getMoney,
