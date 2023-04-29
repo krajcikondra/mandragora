@@ -63,7 +63,7 @@ export const itemsData: Activity[] = [
     {type: 'normal', audioName: "27.mp3", title: "Komu nebude stát nedostane ani korunu", points: 5, unlockFrom:  levels.level2},
     {type: 'normal', audioName: "28.mp3", title: "Kdo z vás se nechá mrdat", points: 12, unlockFrom:  levels.level2, availableForHero: 'Zuzka'},
     {type: 'normal', audioName: "29.mp3", title: "Dostaneš nejvíc peněz", points: 5, unlockFrom:  levels.level2},
-    {type: 'normal', audioName: "30.mp3", title: "Se taky nechám prcat", points: 5, unlockFrom:  levels.level2},
+    {type: 'normal', audioName: "30.mp3", title: "Se taky nechám prcat", points: 3, unlockFrom:  levels.level2, earning: 800, healthRisk: true},
     {type: 'normal', audioName: "31.mp3", title: "Postavte si čuráky", points: 5, unlockFrom:  levels.level3},
     {type: 'normal', audioName: "32.mp3", title: "Musíme ještě dneska to poslat do Německa", points: 5, unlockFrom:  levels.level3},
     {type: 'normal', audioName: "33.mp3", title: "Doufam, že mi to do pusy stříkat nebude", points: 5, unlockFrom:  levels.level3},
