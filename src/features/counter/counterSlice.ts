@@ -96,7 +96,7 @@ export const counterSlice = createSlice({
             state.addictionLevel = 3;
         } else if (state.drugCounter > 15) {
             state.addictionLevel = 2;
-        } else if (state.drugCounter > 10) {
+        } else if (state.drugCounter > 5) {
             state.addictionLevel = 1;
         }
         mandragoraStorage.setDrugCounter(state.drugCounter);
