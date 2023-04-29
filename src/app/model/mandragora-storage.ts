@@ -5,6 +5,8 @@ const cryptoKey = 'mandragoraKey';
 const moneyKey = 'dfsaf89sd89fhsafd89';
 const scoreKey = 'd8fjdf888d888ffdsa';
 const healthKey = '8fhfhsd988f88';
+const addictionLevelKey = '8f4fhfhsd988f88xxff';
+const drugCounterKey = '3f4fhfhd988f88uf';
 
 const setValueEncrypted = (name: string, value: number): void => {
     const cipher = CryptoJS.AES.encrypt(String(value), cryptoKey).toString();
@@ -49,6 +51,14 @@ const setHealth = (health: number): void => {
     setValueEncrypted(healthKey, health);
 };
 
+const setAddictionLevel = (addictionLevel: number): void => {
+    setValueEncrypted(addictionLevelKey, addictionLevel);
+};
+
+const setDrugCounter = (addictionLevel: number): void => {
+    setValueEncrypted(drugCounterKey, addictionLevel);
+};
+
 const increaseHealth = (amount: number): void => {
     setHealth(getHealth() + amount);
 };
@@ -87,6 +97,14 @@ const getScore = (): number => {
     return Number(getValueEncrypted(scoreKey));
 };
 
+const getAddictionLevel = (): number => {
+    return Number(getValueEncrypted(addictionLevelKey));
+};
+
+const getDrugCounter = (): number => {
+    return Number(getValueEncrypted(drugCounterKey));
+};
+
 const getMoney = (): number => {
     return Number(getValueEncrypted(moneyKey));
 };
@@ -117,6 +135,8 @@ const reset = () => {
     localStorage.removeItem(moneyKey);
     localStorage.removeItem(healthKey);
     localStorage.removeItem(verifyScoreSecret);
+    localStorage.removeItem(addictionLevelKey);
+    localStorage.removeItem(drugCounterKey);
 };
 
 export const mandragoraStorage = {
@@ -133,4 +153,8 @@ export const mandragoraStorage = {
     decreaseHealth,
     reset,
     setHealth,
+    setAddictionLevel,
+    getAddictionLevel,
+    setDrugCounter,
+    getDrugCounter,
 };

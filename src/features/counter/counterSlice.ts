@@ -12,6 +12,8 @@ export interface CounterState {
   hero: string|null;
   health: number;
   storeActive: boolean;
+  addictionLevel: number;
+  drugCounter: number;
 }
 
 const initialState: CounterState = {
@@ -21,6 +23,8 @@ const initialState: CounterState = {
   money: mandragoraStorage.getMoney(),
   health: mandragoraStorage.getHealth(),
   storeActive: false,
+  addictionLevel: mandragoraStorage.getAddictionLevel(),
+  drugCounter: mandragoraStorage.getDrugCounter(),
 };
 
 // The function below is called a thunk and allows us to perform async logic. It
@@ -73,6 +77,31 @@ export const counterSlice = createSlice({
         state.health = Math.min(state.health + action.payload, 100);
         mandragoraStorage.setHealth(state.health);
     },
+    setAddictionLevel: (state, action: PayloadAction<number>) => {
+        state.addictionLevel = action.payload;
+        mandragoraStorage.setAddictionLevel(state.health);
+    },
+    setDrugCounter: (state, action: PayloadAction<number>) => {
+        state.drugCounter = action.payload;
+        mandragoraStorage.setDrugCounter(state.drugCounter);
+    },
+    increaseDrugCounter: (state, action: PayloadAction<number>) => {
+        state.drugCounter += action.payload;
+        state.addictionLevel = 0;
+        if (state.drugCounter > 50) {
+            state.addictionLevel = 5;
+        } else if (state.drugCounter > 35) {
+            state.addictionLevel = 4;
+        } else if (state.drugCounter > 20) {
+            state.addictionLevel = 3;
+        } else if (state.drugCounter > 15) {
+            state.addictionLevel = 2;
+        } else if (state.drugCounter > 10) {
+            state.addictionLevel = 1;
+        }
+        mandragoraStorage.setDrugCounter(state.drugCounter);
+        mandragoraStorage.setAddictionLevel(state.addictionLevel);
+    },
     setHero: (state, action: PayloadAction<string|null>) => {
         state.hero = action.payload;
         mandragoraStorage.setHero(action.payload);
@@ -88,6 +117,9 @@ export const {
     decreaseHealth,
     increaseHealth,
     openStore,
+    setAddictionLevel,
+    setDrugCounter,
+    increaseDrugCounter,
 } = counterSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
@@ -99,6 +131,8 @@ export const selectRank = (state: RootState) => state.counter.rank;
 export const selectHero = (state: RootState) => state.counter.hero;
 export const selectHealth = (state: RootState) => state.counter.health;
 export const selectOpenStore = (state: RootState) => state.counter.storeActive;
+export const selectAddictionLevel = (state: RootState) => state.counter.addictionLevel;
+export const selectDrugCounter = (state: RootState) => state.counter.drugCounter;
 
 // We can also write thunks by hand, which may contain both sync and async logic.
 // Here's an example of conditionally dispatching actions based on current state.

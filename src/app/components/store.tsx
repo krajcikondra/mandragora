@@ -2,7 +2,12 @@ import React from 'react';
 import {compose} from "redux";
 import {useDispatch} from "react-redux";
 
-import {decreaseMoneyByAmount, increaseHealth, openStore, selectMoney} from "../../features/counter/counterSlice";
+import {
+    decreaseMoneyByAmount, increaseDrugCounter,
+    increaseHealth,
+    openStore, selectAddictionLevel,
+    selectMoney, setAddictionLevel, setDrugCounter,
+} from "../../features/counter/counterSlice";
 import {useAppSelector} from "../hooks";
 import {audioPlayer} from "../model/audio-player";
 import {mandragoraStorage} from "../model/mandragora-storage";
@@ -12,7 +17,7 @@ type OuterProps = {
 
 type StoreItem = {
     img: string,
-    name: 'heroin'|'kondomy',
+    name: 'heroin'|'kondomy'|'guru',
     title: string,
     price: number,
     count: number,
@@ -21,9 +26,25 @@ type StoreItem = {
 
 type Props = OuterProps;
 
+const getIncreaseHeroinHealth = (addictionLevel: number): number => {
+    if (addictionLevel === 0) {
+        return 10;
+    } else if (addictionLevel === 1) {
+        return 8;
+    } else if (addictionLevel === 2) {
+        return 4;
+    } else if (addictionLevel === 3) {
+        return 3;
+    } else if (addictionLevel === 4) {
+        return 2;
+    }
+    return 0;
+}
+
 function MyStore(_: Props) {
     const dispatch = useDispatch();
     const money = useAppSelector(selectMoney);
+    const addictionLevel = useAppSelector(selectAddictionLevel);
 
     const buyItem = (item: StoreItem) => {
         if (money < item.price) {
@@ -32,11 +53,18 @@ function MyStore(_: Props) {
         }
 
         if (item.name === 'heroin') {
-            dispatch(increaseHealth(10));
-            dispatch(decreaseMoneyByAmount(item.price));
+            dispatch(increaseHealth(getIncreaseHeroinHealth(addictionLevel)));
             audioPlayer.playSniff();
-            mandragoraStorage.decreaseMoney(item.price);
+            dispatch(increaseDrugCounter(1));
+        } else if (item.name === 'guru') {
+            audioPlayer.play('12.mp3');
+            dispatch(setDrugCounter(0));
+            dispatch(setAddictionLevel(0));
+            alert('Guru Jára tě za chvíli odháčkuje a zbaví tě drogové závislosti.')
         }
+
+        dispatch(decreaseMoneyByAmount(item.price));
+        mandragoraStorage.decreaseMoney(item.price);
     };
     const items: StoreItem[] = [
         // {
@@ -54,6 +82,14 @@ function MyStore(_: Props) {
             price: 2000,
             count: 0,
             description: 'Jedna dávka tě nakopne o +10 zdraví',
+        },
+        {
+            img: '/assets/guru.jpeg',
+            name: 'guru',
+            title: 'Léčba drogové závislosti',
+            price: 25000,
+            count: 0,
+            description: 'Guru Jára vyléčí tvoji drogovou závislost.',
         },
     ];
 

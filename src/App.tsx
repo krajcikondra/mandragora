@@ -1,6 +1,7 @@
 import React from 'react';
 import {useAppSelector} from "./app/hooks";
 import {
+    selectAddictionLevel,
     selectHealth,
     selectHero,
     selectMoney,
@@ -23,6 +24,7 @@ function App() {
   const money = useAppSelector(selectMoney);
   const health = useAppSelector(selectHealth);
   const isStoreOpen = useAppSelector(selectOpenStore);
+  const addictionLevel = useAppSelector(selectAddictionLevel);
   const hero = heroName ? heroes.find(h => h.name === heroName) : null;
 
   const getBg = (): number => {
@@ -56,6 +58,7 @@ function App() {
                   hero={hero ?? null}
                   money={money}
                   health={health}
+                  addictionLevel={addictionLevel}
               />
               <h2 className="mt-3">Milujeme mandragoru</h2>
               {render()}
