@@ -87,7 +87,7 @@ function MyStore(_: Props) {
             img: '/assets/guru.jpeg',
             name: 'guru',
             title: 'Léčba drogové závislosti',
-            price: 25000,
+            price: 20000,
             count: 0,
             description: 'Guru Jára vyléčí tvoji drogovou závislost.',
         },
