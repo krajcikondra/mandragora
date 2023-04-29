@@ -88,13 +88,13 @@ export const counterSlice = createSlice({
     increaseDrugCounter: (state, action: PayloadAction<number>) => {
         state.drugCounter += action.payload;
         state.addictionLevel = 0;
-        if (state.drugCounter > 50) {
+        if (state.drugCounter > 25) {
             state.addictionLevel = 5;
-        } else if (state.drugCounter > 35) {
-            state.addictionLevel = 4;
         } else if (state.drugCounter > 20) {
-            state.addictionLevel = 3;
+            state.addictionLevel = 4;
         } else if (state.drugCounter > 15) {
+            state.addictionLevel = 3;
+        } else if (state.drugCounter > 10) {
             state.addictionLevel = 2;
         } else if (state.drugCounter > 5) {
             state.addictionLevel = 1;
