@@ -1,5 +1,5 @@
 import {Activity} from "../components/items";
-import {audioPlayer} from "./audio-player";
+import {audioPlayer, generateRandomInRange} from "./audio-player";
 import {mandragoraStorage} from "./mandragora-storage";
 
 const increase = (points: number, increaseFc: any, earning?: number, increaseMoneyFc?: any): void => {
@@ -20,8 +20,9 @@ const play = (
     audioPlayer.play(activity.audioName).then(() => {
         increase(activity.points, increaseFc, activity.earning, increaseMoneyFc);
         if (activity.healthRisk && amIInfected()) {
-            mandragoraStorage.decreaseHealth(3);
-            decreaseHealth(3);
+            const healthMinus = generateRandomInRange(3, 8);
+            mandragoraStorage.decreaseHealth(healthMinus);
+            decreaseHealth(healthMinus);
         }
     });
 };

@@ -55,6 +55,23 @@ const generateRandom = (exclude?: number[]) => {
     }
 }
 
+export const generateRandomInRange = (min: number, max: number): number => {
+    // find diff
+    let difference = max - min;
+
+    // generate random number
+    let rand = Math.random();
+
+    // multiply with difference
+    rand = Math.floor( rand * difference);
+
+    // add with min value
+    rand = rand + min;
+
+    return rand;
+}
+
+
 const playRandom = (): Promise<boolean> => {
     return play(`${generateRandom()}.mp3`);
 };
@@ -101,4 +118,5 @@ export const audioPlayer = {
     playRandom,
     playSniff,
     playCelebrate,
+    generateRandomInRange,
 };
