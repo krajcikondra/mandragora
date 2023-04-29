@@ -28,7 +28,7 @@ const play = (
 };
 
 const generateRandom = (min: number, max: number): number => Math.floor(Math.random() * (max - min + 1) + min);
-const amIInfected = (): boolean => generateRandom(1, 5) === 5;
+const amIInfected = (): boolean => generateRandom(1, 4) === 4;
 
 const playStory = (points: number, increaseFc: any) => {
     audioPlayer.generateStoryAndPlay().then(() => {
