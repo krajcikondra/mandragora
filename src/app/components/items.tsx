@@ -50,7 +50,7 @@ export const itemsData: Activity[] = [
     {type: 'normal', audioName: "13.mp3", title: "Všechno se naučíš", points: 5, unlockFrom:  levels.level1, availableForHero: 'David'},
     {type: 'normal', audioName: "14.mp3", title: "Umej si ten ksicht", points: 7, unlockFrom:  levels.level1, availableForHero: 'Honza'},
     {type: 'normal', audioName: "15.mp3", title: "Půjčíš nám ty kluky", points: 5, unlockFrom:  levels.level1},
-    {type: 'normal', audioName: "17.mp3", title: "Jdeme do plnejch", points: 10, unlockFrom:  levels.level1, availableForHero: 'Saša'},
+    {type: 'normal', audioName: "17.mp3", title: "Jdeme do plnejch", points: 10, unlockFrom:  levels.level1, availableForHero: 'Saša', earning: 100},
     {type: 'normal', audioName: "18.mp3", title: "Říkáš že všechno jo?", points: 14, unlockFrom:  levels.level1, availableForHero: 'Krysa'},
     {type: 'normal', audioName: "19.mp3", title: "Ládínek, to je pusinka", points: 10, unlockFrom:  levels.level1, availableForHero: 'Saša'},
     {type: 'normal', audioName: "20.mp3", title: "Your balls are too much big", points: 5, unlockFrom:  levels.level1},
