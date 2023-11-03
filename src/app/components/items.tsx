@@ -5,7 +5,6 @@ import {levels} from "../model/levels";
 import {HeroName} from "./heroes";
 
 type OuterProps = {
-    score: number,
     heroName: string|null,
 };
 

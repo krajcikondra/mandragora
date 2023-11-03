@@ -5,9 +5,10 @@ import {useDispatch} from "react-redux";
 import {
     decreaseMoneyByAmount, increaseDrugCounter,
     increaseHealth,
-    openStore, selectAddictionLevel,
+    selectAddictionLevel,
     selectMoney, setAddictionLevel, setDrugCounter,
-} from "../../features/counter/counterSlice";
+} from "../store/playerSlice";
+import {openStore} from "../store/storeSlice";
 import {useAppSelector} from "../hooks";
 import {audioPlayer} from "../model/audio-player";
 import {mandragoraStorage} from "../model/mandragora-storage";

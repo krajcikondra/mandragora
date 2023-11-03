@@ -1,11 +1,11 @@
 import React from 'react';
 import {useDispatch} from "react-redux";
-import {setHero} from "../../features/counter/counterSlice";
+import {selectScore, setHero} from "../store/playerSlice";
 import {HeroComponent} from "./hero-component";
 import {levels} from "../model/levels";
+import {useAppSelector} from "../hooks";
 
 type OuterProps = {
-    score: number,
 };
 
 type Props = OuterProps;
@@ -29,8 +29,9 @@ export const heroes: Hero[] = [
     {imgSrc: '/hero/krysa.png', name: 'Krysa', minScore: levels.level8},
 ];
 
-export const Heroes = ({score}: Props) => {
+export const Heroes = () => {
     const dispatch = useDispatch();
+    const score = useAppSelector(selectScore);
 
     const select = (hero: Hero) => {
         dispatch(setHero(hero.name));

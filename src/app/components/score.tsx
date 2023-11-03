@@ -1,15 +1,14 @@
 import React from 'react';
-import {compose} from "redux";
 import {ProgressBar} from "react-bootstrap";
 import {useDispatch} from "react-redux";
 
-import {levels} from "../model/levels";
-import {Hero} from "./heroes";
-import {openStore, selectOpenStore, setHero} from "../../features/counter/counterSlice";
-import {useAppSelector} from "../hooks";
+import {levels} from '../model/levels';
+import {Hero} from './heroes';
+import {selectScore, setHero} from '../store/playerSlice';
+import {openStore, selectOpenStore} from '../store/storeSlice';
+import {useAppSelector} from '../hooks';
 
 type OuterProps = {
-    score: number,
     rank: string,
     hero: Hero|null,
     money: number|null,
@@ -19,9 +18,10 @@ type OuterProps = {
 
 type Props = OuterProps;
 
-function MyScore({score, rank, hero, money, health, addictionLevel}: Props) {
+export function Score({rank, hero, money, health, addictionLevel}: Props) {
     const dispatch = useDispatch();
     const isStoreOpen = useAppSelector(selectOpenStore);
+    const score = useAppSelector(selectScore);
 
     const resetHero = () => {
         dispatch(setHero(null));
@@ -45,8 +45,3 @@ function MyScore({score, rank, hero, money, health, addictionLevel}: Props) {
         </div>
     </div>;
 }
-
-const enhance = compose<React.ComponentClass<OuterProps>>(
-);
-
-export const Score = enhance(MyScore);

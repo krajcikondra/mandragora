@@ -1,48 +1,31 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState, AppThunk } from '../../app/store';
-import {fetchCount} from './counterAPI';
-import {mandragoraStorage} from "../../app/model/mandragora-storage";
-import {getRank} from "../../app/model/rank-by-score";
-import {audioPlayer} from "../../app/model/audio-player";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RootState, AppThunk } from './store';
+import {mandragoraStorage} from "../model/mandragora-storage";
+import {getRank} from "../model/rank-by-score";
+import {audioPlayer} from "../model/audio-player";
 
-export interface CounterState {
+export interface PlayerState {
   score: number;
   money: number;
   rank: string;
   hero: string|null;
   health: number;
-  storeActive: boolean;
   addictionLevel: number;
   drugCounter: number;
 }
 
-const initialState: CounterState = {
+const initialState: PlayerState = {
   score: mandragoraStorage.getScore(),
   rank: getRank(mandragoraStorage.getScore()),
   hero: mandragoraStorage.getHero(),
   money: mandragoraStorage.getMoney(),
   health: mandragoraStorage.getHealth(),
-  storeActive: false,
   addictionLevel: mandragoraStorage.getAddictionLevel(),
   drugCounter: mandragoraStorage.getDrugCounter(),
 };
 
-// The function below is called a thunk and allows us to perform async logic. It
-// can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
-// will call the thunk with the `dispatch` function as the first argument. Async
-// code can then be executed and other actions can be dispatched. Thunks are
-// typically used to make async requests.
-export const incrementAsync = createAsyncThunk(
-  'counter/fetchCount',
-  async (amount: number) => {
-    const response = await fetchCount(amount);
-    // The value we return becomes the `fulfilled` action payload
-    return response.data;
-  }
-);
-
-export const counterSlice = createSlice({
-  name: 'counter',
+export const playerSlice = createSlice({
+  name: 'player',
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
@@ -60,9 +43,6 @@ export const counterSlice = createSlice({
     },
     decreaseMoneyByAmount: (state, action: PayloadAction<number>) => {
         state.money -= action.payload;
-    },
-    openStore: (state, action: PayloadAction<boolean>) => {
-        state.storeActive = action.payload;
     },
     decreaseHealth: (state, action: PayloadAction<number>) => {
         state.health -= action.payload;
@@ -116,33 +96,20 @@ export const {
     setHero,
     decreaseHealth,
     increaseHealth,
-    openStore,
     setAddictionLevel,
     setDrugCounter,
     increaseDrugCounter,
-} = counterSlice.actions;
+} = playerSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
-export const selectScore = (state: RootState) => state.counter.score;
-export const selectMoney = (state: RootState) => state.counter.money;
-export const selectRank = (state: RootState) => state.counter.rank;
-export const selectHero = (state: RootState) => state.counter.hero;
-export const selectHealth = (state: RootState) => state.counter.health;
-export const selectOpenStore = (state: RootState) => state.counter.storeActive;
-export const selectAddictionLevel = (state: RootState) => state.counter.addictionLevel;
-export const selectDrugCounter = (state: RootState) => state.counter.drugCounter;
+export const selectScore = (state: RootState) => state.player.score;
+export const selectMoney = (state: RootState) => state.player.money;
+export const selectRank = (state: RootState) => state.player.rank;
+export const selectHero = (state: RootState) => state.player.hero;
+export const selectHealth = (state: RootState) => state.player.health;
+export const selectAddictionLevel = (state: RootState) => state.player.addictionLevel;
+export const selectDrugCounter = (state: RootState) => state.player.drugCounter;
 
-// We can also write thunks by hand, which may contain both sync and async logic.
-// Here's an example of conditionally dispatching actions based on current state.
-export const incrementIfOdd =
-  (amount: number): AppThunk =>
-  (dispatch, getState) => {
-    const currentValue = selectScore(getState());
-    if (currentValue % 2 === 1) {
-      dispatch(incrementByAmount(amount));
-    }
-  };
-
-export default counterSlice.reducer;
+export default playerSlice.reducer;

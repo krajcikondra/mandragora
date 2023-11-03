@@ -3,8 +3,8 @@ import {compose} from "redux";
 import classNames from 'classnames';
 import {connect} from "react-redux";
 
-import {RootState} from '../store';
-import {decreaseHealth, incrementByAmount, incrementMoneyByAmount} from '../../features/counter/counterSlice';
+import {RootState} from '../store/store';
+import {decreaseHealth, incrementByAmount, incrementMoneyByAmount} from '../store/playerSlice';
 import {mandragora} from '../model/mandragora';
 import {Activity} from './items';
 
@@ -60,7 +60,7 @@ function item({activity, increaseScore, increaseMoney, score, decreaseHealth}: P
 }
 
 const mapStateToProps = (state: RootState): StateProps => ({
-    score: state.counter.score,
+    score: state.player.score,
 });
 
 const mapDispatchToProps = (dispatch: any): DispatchProps => ({
